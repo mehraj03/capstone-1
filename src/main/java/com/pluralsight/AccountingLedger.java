@@ -1,8 +1,8 @@
 package com.pluralsight;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -41,6 +41,72 @@ public class AccountingLedger {
             System.err.println("error reading file.");
         }
     }
+    // save transtions to csv
+    public static void saveTransaction(Transaction t) {
+        try {
+            FileWriter writer = new FileWriter((fileName, true);
+            writer.write(t.toCsvLine() + "\n");
+            writer.close();
+        } catch (IOException e) {
+            System.err.println("Error saving transaction");
+        }
+    }
+    //home screen
+    public static void homeScreen() {
+         boolean running = true;
+         while (running) {
+             System.out.println("\n===== ACCOUNTING LEDGER =====");
+             System.out.println("D) Add Deposit");
+             System.out.println("P) Make Payment (Debit)");
+             System.out.println("L) Ledger");
+             System.out.println("x) Exist");
+             System.out.println("Coose an option: ");
+
+             String choice = scanner.nextLine().toUpperCase();
+
+             if (choice.equals("D")) {
+                 addDeposit();
+             } else if (choice.equals("P")) {
+                 makePayment();
+             } else if (choice.equals("L")) {
+                 ledgerScreen();
+             } else if (choice.equals("x")) {
+                 running = false;
+                 System.out.println("Goodbye!");
+             } else {
+                 System.out.println("Invalid option. Pleae try again. ");
+             }
+
+         }
+
+    }
+    // add deposit //
+    public static void addDeposit(){
+        System.out.println("\n==== ADD DEPOSIT====");
+        System.out.print("Description");
+        String description = scanner.nextLine();
+
+        System.out.print("Vendor: ");
+        String vendor = scanner.nextLine();
+        System.out.print("Amount: ");
+        double amount = Double.parseDouble(scanner.nextLine());
+
+        //get current time and date
+        DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter timeFmt = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String date = LocalDate.now().format(dateFmt);
+        String time = LocalTime.now().format(timeFmt);
+
+        Transaction t = new Transaction(date, time, description, vendor, amount);
+        transactions.add(t);
+        saveTransaction(t);
+        System.out.print("deposit added!");
+    }
+
+
+
+
+}
 
 
 
