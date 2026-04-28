@@ -126,6 +126,68 @@ public class AccountingLedger {
         saveTransaction(t);
         System.out.println("Payment recorded! ");
     }
+    // ledger screen
+    public static void ledgerScreen() {
+        boolean onScreen = true;
+        while (onScreen) {
+            System.out.println("\n==== LEDGER ====");
+            System.out.println("A) ALL");
+            System.out.println("D) Deposits");
+            System.out.println("P) Payments");
+            System.out.println("R) Reports");
+            System.out.println("H) Home");
+            System.out.print("Choose an option: ");
+
+            String choice = scanner.nextLine().toUpperCase();
+
+            if (choice.equals("A")) {
+                displayAll();
+            } else if (choice.equals("D")) {
+                displayDeposits();
+            } else if (choice.equals("P")) {
+                displayPayments();
+            } else if (choice.equals("R")) {
+                reportScreen();
+            } else if (choice.equals("H")) {
+                onScreen = false;
+            } else {
+                System.out.println("Invalid option. please try again");
+            }
+        }
+    }
+
+    // display all
+    public static void displayAll() {
+        System.out.println("\n===== ALL TRANSACTIONS ====");
+        for (int i = transactions.size() - 1; i >= 0; i--) {
+            System.out.println(transactions.get(i).toDisplayLine());
+        }
+    }
+    // display depoist only
+    public static void displayDeposits() {
+        System.out.println("\n===== DEPOSITS =====");
+        for (int i = transactions.size() -1; i >= 0; i--) {
+            Transaction t = transactions.get(i);
+            if (t.getAmount() > 0) {
+                System.out.println(t.toDisplayLine());
+            }
+        }
+    }
+    // display payments only
+    public static void displayPayments() {
+        System.out.println("\n==== PAYMENTS =====");
+        for (int i = transactions.size() - 1; i >= 0; i--) {
+            Transaction t = transactions.get(i);
+            if (t.getAmount()< 0) {
+                System.out.println(t.toDisplayLine());
+            }
+
+        }
+    }
+    // report screen (palcement gholder for next commit
+    public static void reportScreen() {
+        System.out.println("Reports screen coming soon!");
+    }
 
 
 
