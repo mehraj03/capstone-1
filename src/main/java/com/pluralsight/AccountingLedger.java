@@ -44,7 +44,7 @@ public class AccountingLedger {
     // save transtions to csv
     public static void saveTransaction(Transaction t) {
         try {
-            FileWriter writer = new FileWriter((fileName, true);
+            FileWriter writer = new FileWriter(fileName, true);
             writer.write(t.toCsvLine() + "\n");
             writer.close();
         } catch (IOException e) {
@@ -91,7 +91,6 @@ public class AccountingLedger {
         System.out.print("Amount: ");
         double amount = Double.parseDouble(scanner.nextLine());
 
-        //get current time and date
         DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeFmt = DateTimeFormatter.ofPattern("HH:mm:ss");
         String date = LocalDate.now().format(dateFmt);
@@ -101,6 +100,31 @@ public class AccountingLedger {
         transactions.add(t);
         saveTransaction(t);
         System.out.print("deposit added!");
+    }
+    // make payment
+    public static void makePayment() {
+        System.out.println("\n==== MAKE PAYMENT ====");
+
+        System.out.print("Description: ");
+        String description = scanner.nextLine();
+
+        System.out.print("Vendor: ");
+        String vendor = scanner.nextLine();
+        System.out.print("Amount:  ");
+        double amount = Double.parseDouble(scanner.nextLine());
+
+        if (amount > 0) {
+            amount = amount * -1;
+        }
+        DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter timeFmt = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String date = LocalDate.now().format(dateFmt);
+        String time = LocalTime.now().format(timeFmt);
+
+        Transaction t = new Transaction(date, time, description, vendor, amount);
+        transactions.add(t);
+        saveTransaction(t);
+        System.out.println("Payment recorded! ");
     }
 
 
