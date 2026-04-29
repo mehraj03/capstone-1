@@ -35,13 +35,9 @@ public class Transaction {
         return amount;
     }
 
-    public String toCvsline() {
-        return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
-    }
-
-    public  String toDisplay() {
+    public  String displayTransaction() {
         return String.format("%s | %s | %-30s | %-20s | $%.2f",
-                date, time, description, vendor, amount);
+                this.date, this.time, this.description, this.vendor, this.amount);
     }
 
 
