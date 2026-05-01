@@ -6,6 +6,7 @@ public class Transaction {
     private String description;
     private String vendor;
     private double amount;
+
     public Transaction(String date, String time, String description, String vendor, double amount) {
         this.date = date;
         this.time = time;
@@ -35,11 +36,10 @@ public class Transaction {
         return amount;
     }
 
-    public  String displayTransaction() {
+    public String displayTransaction() {
         return String.format("%s | %s | %-30s | %-20s | $%.2f",
                 this.date, this.time, this.description, this.vendor, this.amount);
     }
-
 
 }
 

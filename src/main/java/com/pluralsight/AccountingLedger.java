@@ -35,6 +35,10 @@ public class AccountingLedger {
 
             String line = bufferedReader.readLine();
             while (line != null) {
+                if (line.isEmpty()) {
+                    line = bufferedReader.readLine();
+                    continue;
+                }
                 String[] tokens = line.split("\\|");
 
                 String date = tokens[0];
