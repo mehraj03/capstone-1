@@ -1,6 +1,7 @@
-# 💰 Accounting Ledger Application
+# 💰 DAD JOKES BANK
 
 ## Description
+*"Where every transaction comes with a smile (and a groan)"*
 
 This is a simple CLI app for tracking financial transactions.
 It can record deposits and payments.
@@ -11,7 +12,7 @@ Your data sticks around between runs.
 
 ╔══════════════════════════════════╗
 ║                                  ║
-║   💰  ACCOUNTING LEDGER  💰      ║
+║   💰   DAD JOKES BANK   💰       ║
 ║                                  ║
 ║   Track every dollar, in & out   ║
 ║                                  ║
@@ -60,13 +61,17 @@ Sub-menu with 5 reports: Month to Date, Previous Month, Year to Date, Previous Y
 ---
 ## Code I'm Most Proud of
 
-I'm proudest of the **January edge case** in `previousMonth()`.
-I caught this bug *before* it happened.
-I asked myself "what if today's date was January 5th?"
-That's when I realized my code would try to look up month 0.
-Catching the bug ahead of time made me feel like an actual programmer for a minute.
+## 💎 Code I'm Most Proud Of
+The **reverse iteration trick** I use to show newest transactions first.
 
-## My Personal Challenges
+The requirement said newest entries had to display first. My first thought was sorting,
+but I realized — since I always add new transactions to the end of the ArrayList,
+I can just loop backwards. No sorting needed.
+
+This same backwards loop is used in 9 different methods — every display and report method.
+ One simple pattern that solves the problem cleanly.
+ Taught me that sometimes the simplest solution beats the fancy one.
+
 
 I struggled a lot with **typos in variable names** at first.
 Java doesn't care that they're "basically the same word."

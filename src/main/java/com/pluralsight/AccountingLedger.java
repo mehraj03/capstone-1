@@ -12,6 +12,15 @@ public class AccountingLedger {
     static String fileName = "src/main/resources/transactions.csv";
 
     public static void main(String[] args) {
+        System.out.println(" _____            _   _       _          ____              _    ");
+        System.out.println("|  __ \\          | | | |     | |        |  _ \\            | |   ");
+        System.out.println("| |  | | __ _  __| | | | ___ | | _____  | |_) | __ _ _ __ | | __");
+        System.out.println("| |  | |/ _` |/ _` | | |/ _ \\| |/ / _ \\ |  _ < / _` | '_ \\| |/ /");
+        System.out.println("| |__| | (_| | (_| | | | (_) |   <  __/ | |_) | (_| | | | |   < ");
+        System.out.println("|_____/ \\__,_|\\__,_| |_|\\___/|_|\\_\\___| |____/ \\__,_|_| |_|_|\\_\\");
+        System.out.println();
+        System.out.println("    \"Where every transaction comes with a smile (and a groan)\"");
+        System.out.println();
         loadTransactions();
         homeScreen();
     }
@@ -60,7 +69,14 @@ public class AccountingLedger {
     public static void homeScreen() {
         boolean running = true;
         while (running) {
-            System.out.println("\n===== ACCOUNTING LEDGER =====");
+            System.out.println();
+            System.out.println(" _    _  ____  __  __ ______ ");
+            System.out.println("| |  | |/ __ \\|  \\/  |  ____|");
+            System.out.println("| |__| | |  | | \\  / | |__   ");
+            System.out.println("|  __  | |  | | |\\/| |  __|  ");
+            System.out.println("| |  | | |__| | |  | | |____ ");
+            System.out.println("|_|  |_|\\____/|_|  |_|______|");
+            System.out.println();
             System.out.println("D) Add Deposit");
             System.out.println("P) Make Payment (Debit)");
             System.out.println("L) Ledger");
@@ -77,9 +93,9 @@ public class AccountingLedger {
                 ledgerScreen();
             } else if (choice.equals("X")) {
                 running = false;
-                System.out.println("Goodbye!");
+                System.out.println("Goodbye! Why did the banker quit? He lost interest!");
             } else {
-                System.out.println("Invalid option. Please try again. ");
+                System.out.println("Invalid option. That's NOT funny. Please try again.. ");
             }
 
         }
@@ -88,7 +104,15 @@ public class AccountingLedger {
 
     // add deposit
     public static void addDeposit() {
-        System.out.println("\n==== ADD DEPOSIT ====");
+        System.out.println();
+        System.out.println(" _____  ______ _____   ____   _____ _____ _______ ");
+        System.out.println("|  __ \\|  ____|  __ \\ / __ \\ / ____|_   _|__   __|");
+        System.out.println("| |  | | |__  | |__) | |  | | (___   | |    | |   ");
+        System.out.println("| |  | |  __| |  ___/| |  | |\\___ \\  | |    | |   ");
+        System.out.println("| |__| | |____| |    | |__| |____) |_| |_   | |   ");
+        System.out.println("|_____/|______|_|     \\____/|_____/|_____|  |_|   ");
+        System.out.println("(Money in is the BEST kind of money)");
+        System.out.println();
         System.out.print("Description: ");
         String description = scanner.nextLine();
 
@@ -105,12 +129,20 @@ public class AccountingLedger {
         Transaction t = new Transaction(date, time, description, vendor, amount);
         transactions.add(t);
         saveTransaction(t);
-        System.out.println("Deposit added!");
+        System.out.println("Deposit added! Why don't scientists trust atoms? Because they make up everything!");
     }
 
     // make payment
     public static void makePayment() {
-        System.out.println("\n==== MAKE PAYMENT ====");
+        System.out.println();
+        System.out.println(" _____    _ __     ____  __ ______ _   _ _______ ");
+        System.out.println("|  __ \\  / \\\\ \\   / /  \\/  |  ____| \\ | |__   __|");
+        System.out.println("| |__) |/ _ \\\\ \\_/ /| \\  / | |__  |  \\| |  | |   ");
+        System.out.println("|  ___// ___ \\\\   / | |\\/| |  __| | . ` |  | |   ");
+        System.out.println("| |   /_/   \\_\\| |  | |  | | |____| |\\  |  | |   ");
+        System.out.println("|_|            |_|  |_|  |_|______|_| \\_|  |_|   ");
+        System.out.println("(Saying goodbye to your money is hard, I know)");
+        System.out.println();
 
         System.out.print("Description: ");
         String description = scanner.nextLine();
@@ -131,14 +163,21 @@ public class AccountingLedger {
         Transaction t = new Transaction(date, time, description, vendor, amount);
         transactions.add(t);
         saveTransaction(t);
-        System.out.println("Payment recorded!");
+        System.out.println("Payment recorded! I told my wallet a joke. It didn't laugh — it just got lighter.");
     }
 
     // ledger screen
     public static void ledgerScreen() {
         boolean onScreen = true;
         while (onScreen) {
-            System.out.println("\n==== LEDGER ====");
+            System.out.println();
+            System.out.println(" _      ______ _____   _____ ______ _____  ");
+            System.out.println("| |    |  ____|  __ \\ / ____|  ____|  __ \\ ");
+            System.out.println("| |    | |__  | |  | | |  __| |__  | |__) |");
+            System.out.println("| |    |  __| | |  | | | |_ |  __| |  _  / ");
+            System.out.println("| |____| |____| |__| | |__| | |____| | \\ \\ ");
+            System.out.println("|______|______|_____/ \\_____|______|_|  \\_\\");
+            System.out.println();
             System.out.println("A) All");
             System.out.println("D) Deposits");
             System.out.println("P) Payments");
@@ -167,6 +206,7 @@ public class AccountingLedger {
     // display all
     public static void displayAll() {
         System.out.println("\n===== ALL TRANSACTIONS ====");
+        System.out.println("(Behold — every penny you've ever moved!)");
         for (int i = transactions.size() - 1; i >= 0; i--) {
             System.out.println(transactions.get(i).displayTransaction());
         }
@@ -186,6 +226,7 @@ public class AccountingLedger {
     // display payments only
     public static void displayPayments() {
         System.out.println("\n===== PAYMENTS =====");
+        System.out.println("(The painful stuff!)");
         for (int i = transactions.size() - 1; i >= 0; i--) {
             Transaction t = transactions.get(i);
             if (t.getAmount() < 0) {
@@ -199,7 +240,15 @@ public class AccountingLedger {
     public static void reportScreen() {
         boolean onScreen = true;
         while (onScreen) {
-            System.out.println("\n==== REPORTS ====");
+            System.out.println();
+            System.out.println(" _____  ______ _____   ____  _____ _______ _____ ");
+            System.out.println("|  __ \\|  ____|  __ \\ / __ \\|  __ \\__   __/ ____|");
+            System.out.println("| |__) | |__  | |__) | |  | | |__) | | | | (___  ");
+            System.out.println("|  _  /|  __| |  ___/| |  | |  _  /  | |  \\___ \\ ");
+            System.out.println("| | \\ \\| |____| |    | |__| | | \\ \\  | |  ____) |");
+            System.out.println("|_|  \\_\\______|_|     \\____/|_|  \\_\\ |_| |_____/ ");
+            System.out.println("Numbers don't lie. Unfortunately.");
+            System.out.println();
             System.out.println("1) Month to Date");
             System.out.println("2) Previous Month");
             System.out.println("3) Year To Date");
@@ -232,6 +281,7 @@ public class AccountingLedger {
     // month to date
     public static void monthToDate() {
         System.out.println("\n===== MONTH TO DATE ======");
+        System.out.println("(How's the month treating you?)");
         LocalDate today = LocalDate.now();
         int currentMonth = today.getMonthValue();
         int currentYear = today.getYear();
@@ -249,6 +299,7 @@ public class AccountingLedger {
     // previous month
     public static void previousMonth() {
         System.out.println("\n===== PREVIOUS MONTH =====");
+        System.out.println("(Back to the future... I mean past)");
         LocalDate today = LocalDate.now();
         int prevMonth = today.getMonthValue() -1;
         int year = today.getYear();
@@ -269,6 +320,7 @@ public class AccountingLedger {
     // year to date
     public static void yearToDate() {
         System.out.println("\n===== YEAR TO DATE =====");
+        System.out.println("(Time flies when you're spending money!)");
         int currentYear = LocalDate.now().getYear();
 
         for (int i = transactions.size() -1; i >= 0; i--) {
@@ -282,6 +334,7 @@ public class AccountingLedger {
     //PREVIOUS YEAR
     public static void previousYear() {
         System.out.println("\n===== PREVIOUS YEAR=====");
+        System.out.println("(Who's been taking your money?)");
         int prevYear = LocalDate.now().getYear() - 1;
 
         for (int i = transactions.size() - 1; i >= 0; i--) {
