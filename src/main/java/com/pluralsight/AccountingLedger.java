@@ -16,7 +16,7 @@ public class AccountingLedger {
         homeScreen();
     }
 
-    // load transtions from csv
+    // load transactions from csv
     public static void loadTransactions() {
         try {
             FileReader reader = new FileReader(fileName);
@@ -39,17 +39,17 @@ public class AccountingLedger {
             }
             bufferedReader.close();
         } catch (FileNotFoundException e) {
-            System.err.println("couldnt find the file: " + fileName);
+            System.err.println("couldn't find the file: " + fileName);
         } catch (IOException e) {
-            System.err.println("error reading file.");
+            System.err.println("Error reading file.");
         }
     }
 
-    // save transtions to csv
+    // save transactions to csv
     public static void saveTransaction(Transaction t) {
         try {
             FileWriter writer = new FileWriter(fileName, true);
-            writer.write(t.displayTransaction() + "\n");
+            writer.write("\n" + t.displayTransaction());
             writer.close();
         } catch (IOException e) {
             System.err.println("Error saving transaction");
@@ -64,8 +64,8 @@ public class AccountingLedger {
             System.out.println("D) Add Deposit");
             System.out.println("P) Make Payment (Debit)");
             System.out.println("L) Ledger");
-            System.out.println("X) Exist");
-            System.out.print("Coose an option: ");
+            System.out.println("X) Exit");
+            System.out.print("Choose an option: ");
 
             String choice = scanner.nextLine().toUpperCase();
 
@@ -86,9 +86,9 @@ public class AccountingLedger {
 
     }
 
-    // add deposit //
+    // add deposit
     public static void addDeposit() {
-        System.out.println("\n==== ADD DEPOSIT====");
+        System.out.println("\n==== ADD DEPOSIT ====");
         System.out.print("Description: ");
         String description = scanner.nextLine();
 
@@ -105,7 +105,7 @@ public class AccountingLedger {
         Transaction t = new Transaction(date, time, description, vendor, amount);
         transactions.add(t);
         saveTransaction(t);
-        System.out.println("deposit added!");
+        System.out.println("Deposit added!");
     }
 
     // make payment
@@ -131,7 +131,7 @@ public class AccountingLedger {
         Transaction t = new Transaction(date, time, description, vendor, amount);
         transactions.add(t);
         saveTransaction(t);
-        System.out.println("Payment recorded! ");
+        System.out.println("Payment recorded!");
     }
 
     // ledger screen
@@ -139,7 +139,7 @@ public class AccountingLedger {
         boolean onScreen = true;
         while (onScreen) {
             System.out.println("\n==== LEDGER ====");
-            System.out.println("A) ALL");
+            System.out.println("A) All");
             System.out.println("D) Deposits");
             System.out.println("P) Payments");
             System.out.println("R) Reports");
@@ -159,7 +159,7 @@ public class AccountingLedger {
             } else if (choice.equals("H")) {
                 onScreen = false;
             } else {
-                System.out.println("Invalid option. please try again");
+                System.out.println("Invalid option. Please try again");
             }
         }
     }
@@ -185,7 +185,7 @@ public class AccountingLedger {
 
     // display payments only
     public static void displayPayments() {
-        System.out.println("\n==== PAYMENTS =====");
+        System.out.println("\n===== PAYMENTS =====");
         for (int i = transactions.size() - 1; i >= 0; i--) {
             Transaction t = transactions.get(i);
             if (t.getAmount() < 0) {
@@ -199,7 +199,7 @@ public class AccountingLedger {
     public static void reportScreen() {
         boolean onScreen = true;
         while (onScreen) {
-            System.out.println("\n==== REPORTs ====");
+            System.out.println("\n==== REPORTS ====");
             System.out.println("1) Month to Date");
             System.out.println("2) Previous Month");
             System.out.println("3) Year To Date");
@@ -297,7 +297,7 @@ public class AccountingLedger {
         System.out.print("Enter vendor name: ");
         String vendor = scanner.nextLine();
 
-        System.out.println("\n===== TRANSACTION FOR " + vendor + "=====");
+        System.out.println("\n===== TRANSACTION FOR " + vendor + " =====");
         boolean found = false;
         for (int i = transactions.size() - 1; i >= 0; i--) {
             Transaction t = transactions.get(i);
@@ -307,7 +307,7 @@ public class AccountingLedger {
             }
         }
         if (!found) {
-            System.out.println("No transaction found for vendor " + vendor);
+            System.out.println("No transaction found for vendor: " + vendor);
         }
     }
 
